@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <_name>Batch Effect</_name>
+    <id>org.ekips.filter.batch-effect</id>
+    <dependency type="executable" location="extensions">batch-effect.py</dependency>
+    <param name="csvpath" type="string" _gui-text="Path to .csv file"></param>
+    <effect>
+	<object-type>all</object-type>
+        <effects-menu>
+            <submenu _name="Render"/>
+        </effects-menu>
+    </effect>
+    <script>
+        <command reldir="extensions" interpreter="python">batch-effect.py</command>
+    </script>
+</inkscape-extension>
