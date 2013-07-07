@@ -9,7 +9,7 @@ import sys
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Chain together Inkscape extensions")
     parser.add_argument('--id', type=str, action='append', dest='ids', default=[],
-                        help="id attribute of object to manipulate")
+                        help="ID attributes of objects to manipulate. Passed to all extensions.")
     parser.add_argument('--csvpath', type=str, required=True,
                         help="Path to .csv file containing command lines")
     parser.add_argument('svgpath', type=str, nargs='?', default='',
