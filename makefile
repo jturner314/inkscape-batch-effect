@@ -5,9 +5,9 @@ SHELL = /bin/bash
 all:
 
 install:
-	install -d "$(HOME)/.config/inkscape/extensions/"
-	install batch-effect.py -t "$(HOME)/.config/inkscape/extensions/"
-	install batch-effect.inx -t "$(HOME)/.config/inkscape/extensions/"
+	install -d "$(DESTDIR)/usr/share/inkscape/extensions/"
+	install batch-effect.py -t "$(DESTDIR)/usr/share/inkscape/extensions/"
+	install batch-effect.inx -m 644 -t "$(DESTDIR)/usr/share/inkscape/extensions/"
 
 clean:
 	$(RM) *.py[cod]
