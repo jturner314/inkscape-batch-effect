@@ -1,29 +1,28 @@
 #!/usr/bin/env python
 
-import argparse
 import csv
+import optparse
 import shutil
 import subprocess
 import sys
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="Chain together Inkscape extensions")
-    parser.add_argument('--id', type=str, action='append', dest='ids', default=[],
-                        help="ID attributes of objects to manipulate. Passed to all extensions.")
-    parser.add_argument('--csvpath', type=str, required=True,
-                        help="Path to .csv file containing command lines")
-    parser.add_argument('svgpath', type=str, nargs='?', default='',
-                        help="Path to temporary SVG file to use for input to the first extension")
-    args = parser.parse_args()
+    parser = optparse.OptionParser(description="Chain together Inkscape extensions",
+                                   usage="%prog [options] svgpath")
+    parser.add_option('--id', dest='ids', action='append', type=str, default=[],
+                      help="ID attributes of objects to manipulate. Passed to all extensions.")
+    parser.add_option('--csvpath', dest='csvpath', type=str,
+                      help="Path to .csv file containing command lines")
+    options, args = parser.parse_args()
 
-    with open(args.csvpath, 'rb') as f:
+    with open(options.csvpath, 'rb') as f:
         # Make an argument list of the ids
         id_args = []
-        for id in args.ids:
+        for id in options.ids:
             id_args.extend(('--id', id))
         # Take input for the first call from temporary file or stdin
-        if args.svgpath:
-            stream = open(args.svgpath)
+        if args:
+            stream = open(args[0])
         else:
             stream = sys.stdin
         # Execute all the calls
